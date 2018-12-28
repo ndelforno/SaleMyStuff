@@ -1,0 +1,2 @@
+class Adpost < ApplicationRecord
+end

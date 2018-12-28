@@ -1,0 +1,2 @@
+class AdpostsController < ApplicationController
+end
