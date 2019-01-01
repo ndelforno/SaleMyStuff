@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :users
   resources :adposts
   resources :categories
+  resources :sessions, only: [:new, :create, :destroy]
 end
