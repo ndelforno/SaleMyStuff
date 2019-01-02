@@ -1,8 +1,8 @@
-<%= @adpost.title  %>
-
-<%= @adpost.description  %>
-<%= @adpost.price  %>
-<%= image_tag @adpost.image  %>
-<%= @adpost.category.name %>
-<%= @adpost.user.user_name  %>
-<%= @adpost.address %>
+<h1><%= @adpost.title %></h1>
+<div class="adpost">
+  <p><%= @adpost.description  %></p>
+  <h2><%= @adpost.price  %>$</h2>
+  <%= image_tag @adpost.image  %>
+  <p><%= @adpost.user.user_name  %></p>
+  <p><%= @adpost.address %></p>
+</div>
