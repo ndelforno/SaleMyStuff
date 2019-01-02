@@ -1,11 +1,13 @@
 class AdpostsController < ApplicationController
 
   def new
-    @adpost = adpost.new
+    @adpost = Adpost.new
+    @categories = Category.all
   end
 
   def create
-    @adpost = adpost.new
+    @categories = Category.all
+    @adpost = Adpost.new
     @adpost.title = params[:adpost][:title]
     @adpost.description = params[:adpost][:description]
     @adpost.price = params[:adpost][:price]
@@ -13,7 +15,7 @@ class AdpostsController < ApplicationController
     @adpost.user = current_user
     @adpost.category_id = params[:category_id]
     @adpost.image.attach(params[:adpost][:image])
-    if adpost.save
+    if @adpost.save
       redirect_to adpost_path
     else
       render :new
