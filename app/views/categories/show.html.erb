@@ -1,0 +1,8 @@
+<%= @category.name  %>
+
+<% @category.adposts.each do |adpost| %>
+<%= adpost.title  %>
+<%= adpost.price  %>
+<%= image_tag adpost.image  %>
+<%= adpost.created_at %>
+<% end  %>
