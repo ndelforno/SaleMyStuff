@@ -1,8 +1,12 @@
-<%= @category.name  %>
+<h1><%= @category.name  %></h1>
 
 <% @category.adposts.each do |adpost| %>
-<%= adpost.title  %>
-<%= adpost.price  %>
-<%= image_tag adpost.image  %>
-<%= adpost.created_at %>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src=<%="#{url_for adpost.image}"%> alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%= adpost.title  %> <%= adpost.price %>$</h5>
+    <p class="card-text"><%= adpost.description  %></p>
+    <a href=<%= "/adposts/#{adpost.id}"%> class="btn btn-primary">See posting</a>
+  </div>
+</div>
 <% end  %>
