@@ -5,6 +5,10 @@ class AdpostsController < ApplicationController
     @categories = Category.all
   end
 
+  def show
+    @adpost = Adpost.find(params[:id])
+  end
+
   def create
     @categories = Category.all
     @adpost = Adpost.new
@@ -16,7 +20,7 @@ class AdpostsController < ApplicationController
     @adpost.category_id = params[:category_id]
     @adpost.image.attach(params[:adpost][:image])
     if @adpost.save
-      redirect_to adpost_path
+      redirect_to adpost_path(@adpost)
     else
       render :new
     end
