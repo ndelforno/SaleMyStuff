@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   if(document.getElementById('mapid')){
     var mymap = L.map('mapid');
-    mymap.setView([43.6532, -79.3832], 13);
     var address = document.getElementById("address");
     var addressText = address.innerText;
-
+    mymap.setView([43.6532, -79.3832], 13);
+    
     if(address){
       axios({
         url: "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + addressText,
@@ -27,4 +27,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }).addTo(mymap);
     }
 
-})
+});

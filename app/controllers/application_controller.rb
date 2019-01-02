@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  
+
   def current_user
     User.find_by(id: session[:user_id])
   end
@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def require_login
     unless current_user
       flash[:alert] = "Please log in"
-      redirect_to login_url
+      redirect_to new_session_path
     end
   end
 
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authenticated
-    redirect_to login_path, alert: "Please login first"
+    redirect_to new_session_path, alert: "Please login first"
   end
 
 
