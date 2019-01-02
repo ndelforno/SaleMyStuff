@@ -4,6 +4,7 @@
 
 
 .adpost{
+  display: inline;
   text-align: center;
   img{
     width: 600px;
@@ -11,4 +12,8 @@
   }
 }
 
-#mapid { height: 180px; }
+#mapid {
+  position: relative;
+  width: 400px;
+  height: 300px;
+ }

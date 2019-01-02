@@ -1,10 +1,17 @@
-<h1><%= @adpost.title %></h1>
 <div class="adpost">
-  <p><%= @adpost.description  %></p>
-  <h2><%= @adpost.price  %>$</h2>
-  <%= image_tag @adpost.image  %>
-  <p><%= @adpost.user.user_name  %></p>
-  <p id="address"><%= @adpost.address %></p>
-
+  <div class="row">
+    <div class="col-lg-6">
+      <h1><%= @adpost.title %></h1>
+      <h2><%= @adpost.price  %>$</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <%= image_tag @adpost.image  %>
+      <p><%= @adpost.description  %></p>
+      <p><%= @adpost.user.user_name  %></p>
+      <p id="address"><%= @adpost.address %></p>
+    </div>
+    <div class="col-lg-3" id="mapid"></div>
+  </div>
 </div>
-<div id="mapid"></div>
