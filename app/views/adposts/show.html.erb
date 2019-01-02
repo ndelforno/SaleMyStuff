@@ -4,5 +4,7 @@
   <h2><%= @adpost.price  %>$</h2>
   <%= image_tag @adpost.image  %>
   <p><%= @adpost.user.user_name  %></p>
-  <p><%= @adpost.address %></p>
+  <p id="address"><%= @adpost.address %></p>
+
 </div>
+<div id="mapid"></div>
