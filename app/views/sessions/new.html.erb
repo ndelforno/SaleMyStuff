@@ -2,16 +2,17 @@
 
 <%= form_tag sessions_path, :method => :post do %>
 
-  <div class="field">
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <%= text_field_tag(:email,"", class: 'form-control') %>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <%= password_field_tag(:password,"", class: 'form-control') %>
   </div>
-  <div class="field">
-    <%= submit_tag "Login" %>
+  <div class="form-group">
+    <%= submit_tag("Login",class:"btn btn-primary") %>
   </div>
   <% end %>
 </div>
