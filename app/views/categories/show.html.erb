@@ -10,3 +10,7 @@
   </div>
 </div>
 <% end  %>
+
+<%= javascript_tag do %>
+  var category = <%= raw(@category.to_json) %>
+<% end %>
