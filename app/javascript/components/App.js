@@ -5,30 +5,16 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import Categories from '../components/Categories'
 
 
 class App extends React.Component {
   render () {
     return (
-      <Router>
         <div>
-          <h1>Hello World</h1>
-          <nav>
-          <Link to="">Appliances</Link>{' '}
-          <Link to="">Cars-Trucks</Link>{' '}
-          <Link to="">Books</Link>{' '}
-          <Link to="">Video-games</Link>{' '}
-          <Link to="">Furnitures</Link>{' '}
-          <Link to="/Computers">Computers</Link>{' '}
-          <Link to="">Electronics</Link>{' '}
-          <Link to="">Motorcycle</Link>{' '}
-          <Link to="">Cell Phone</Link>{' '}
-          <Link to="">Bikes</Link>{' '}
-          <Link to="">Tickets</Link>
-          </nav>
-          <Route path="/Computers" component={Computers}/>
+          <h1>React here</h1>
+          <Categories />
         </div>
-      </Router>
     )
   }
 }
