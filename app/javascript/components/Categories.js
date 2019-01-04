@@ -18,7 +18,7 @@ class Categories extends React.Component {
 
     var categories = this.state.categories.map((category) => {
       return(
-         <div>
+         <div id = {category.name} >
           <h1>{category.name}</h1>
          </div>
         )
