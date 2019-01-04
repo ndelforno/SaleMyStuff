@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.category {
+  grid-column: 1fr;
+  width: 600px;
+  height: 400px;
+  color: white;
+}
+
 #Appliances {
   background-image: url('stove.jpg');
 }
