@@ -2,13 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.container {
+.categories-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .category {
-  grid-column: 1fr;
   width: 600px;
   height: 400px;
   color: white;
@@ -46,7 +47,7 @@
   background-image: url('motorbike.jpg')
 }
 
-#Cell Phones {
+#Phones {
   background-image: url('phone.jpg')
 }
 
