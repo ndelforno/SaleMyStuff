@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import Computers from '../components/Computers'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 
 class Categories extends React.Component {
 
@@ -18,9 +24,14 @@ class Categories extends React.Component {
 
     var categories = this.state.categories.map((category) => {
       return(
+        <Router>
          <div class= "card category" id = {category.name}>
-            <h1>{category.name}</h1>
+          <nav>
+            <h1><Link to= {category.name}> {category.name}</Link></h1>
+            <Route path="app/javascript/components/" + {category.name} component={category.name} />
+          </nav>
          </div>
+         </Router>
         )
     })
 

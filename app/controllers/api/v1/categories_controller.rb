@@ -18,6 +18,10 @@ class Api::V1::CategoriesController < ApplicationController
     render json: category
   end
 
+  def show
+    render json: Category.find(params[:id])
+  end
+
   private
 
   def category_params

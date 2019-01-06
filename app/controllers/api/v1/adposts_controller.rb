@@ -14,13 +14,13 @@ class Api::V1::AdpostsController < ApplicationController
 
   def update
     adpost = Adpost.find(params[:id])
-    adpost.update_attributes(category_params)
-    render json: category
+    adpost.update_attributes(adpost_params)
+    render json: adpost
   end
 
   private
 
   def category_params
-    params.require(:category).permit(:id, :name, :description)
+    params.require(:adpost).permit(:id, :name, :description)
   end
 end
