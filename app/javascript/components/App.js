@@ -26,11 +26,11 @@ class App extends React.Component {
     var categories = this.state.categories.map((category) => {
       return(
         <Router>
-           <div class= "card category" id = {category.name} key={category.id} >
+           <div className= "card category" id = {category.name} key={category.id} >
             <nav>
               <h1><Link to= {category.name}> {category.name}</Link></h1>
             </nav>
-              <Route path= {category.name} component= {category.name} />
+              <Route path={`components/${category.name}`} component= {category.name.charAt(0).toUpperCase() + category.name.slice(1)} />
            </div>
          </Router>
         )
@@ -38,7 +38,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>To do: List of Categories</h1>
-          <div class="categories-container">
+          <div className="categories-container">
               {categories}
           </div>
       </div>
