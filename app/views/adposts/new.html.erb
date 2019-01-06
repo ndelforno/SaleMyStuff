@@ -5,12 +5,12 @@
   <%= f.text_field :title, class: 'form-control'  %>
 </div>
 
-<% @categories.each do |category| %>
-<div class="form-group">
-  <%= radio_button_tag(:category_id, "#{category.id}") %>
-  <%= label_tag(:category_id, "#{category.name}") %>
-<% end %>
-</div>
+<fieldset><legend>Category</legend>
+  <% @categories.each do |category| %>
+    <%= radio_button_tag(:category_id, "#{category.id}") %>
+    <%= label_tag(:category_id, "#{category.name}") %>
+  <% end %>
+</fieldset>
 
 <div class="form-group">
   <label for="exampleInputDescription">Description</label>

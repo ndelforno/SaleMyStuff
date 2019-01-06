@@ -6,4 +6,11 @@ Rails.application.routes.draw do
   resources :adposts
   resources :categories
   resources :sessions, only: [:new, :create, :destroy]
+
+  namespace :api do
+    namespace :v1 do
+     resources :adposts, only: [:index, :create, :destroy, :update]
+     resources :categories, only: [:index, :create, :destroy, :update]
+    end
+  end
 end

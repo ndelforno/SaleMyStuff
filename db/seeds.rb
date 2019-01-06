@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Category.destroy_all
-["Appliances", "Cars-trucks", "Books", "Video-games", "Furnitures", "Computers", "Electronics", "Motorcycle", "Cell Phones", "Bikes", "Ticketsrailsexit
+["Appliances", "Cars-trucks", "Books", "Video-games", "Furnitures", "Computers", "Electronics", "Motorcycle", "Phones", "Bikes", "Ticketsrailsexit
   "].each do |name|
   Category.create(name: name)
 end
