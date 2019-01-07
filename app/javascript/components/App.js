@@ -1,5 +1,6 @@
 import React from 'react'
 import Computers from '../components/Computers'
+import Appliances from '../components/Appliances'
 import {
   BrowserRouter as Router,
   Route,
@@ -28,9 +29,10 @@ class App extends React.Component {
         <Router>
            <div className= "card category" id = {category.name} key={category.id} >
             <nav>
-              <h1><Link to= {category.name}> {category.name}</Link></h1>
+              <h1><Link to={`/${category.name}`}> {category.name}</Link></h1>
             </nav>
-              <Route path={`components/${category.name}`} component= {category.name.charAt(0).toUpperCase() + category.name.slice(1)} />
+              <Route path= "/Computers" component= {Computers}/>
+              <Route path= "/Appliances" component= {Appliances}/>
            </div>
          </Router>
         )
