@@ -50,35 +50,35 @@ RSpec.describe 'Users API' , type: :request do
   end
 
   # Test suite for POST /users
-  describe 'POST /users' do
-    # valid payload
-    let(:valid_attributes) { { user_name: 'Gandalf', email: 'roger@gmail.com', password: '123456' } }
-
-    context 'when the request is valid' do
-      before { post '/users', params: valid_attributes }
-
-      it 'creates a user' do
-        expect(json['user_name']).to eq('Gandalf')
-      end
-
-      it 'returns status code 201' do
-        expect(response).to have_http_status(201)
-      end
-    end
-
-    context 'when the request is invalid' do
-      before { post '/users', params: { user_name: 'Foobar' } }
-
-      it 'returns status code 422' do
-        expect(response).to have_http_status(422)
-      end
-
-      it 'returns a validation failure message' do
-        expect(response.body)
-          .to match(/Validation failed: Email can't be blank/)
-      end
-    end
-  end
+  # describe 'POST /users' do
+  #   # valid payload
+  #   let(:valid_attributes) { { user_name: 'Gandalf', email: 'roger@gmail.com', password: '123456' } }
+  #
+  #   context 'when the request is valid' do
+  #     before { post '/users', params: valid_attributes }
+  #
+  #     it 'creates a user' do
+  #       expect(json['user_name']).to eq('Gandalf')
+  #     end
+  #
+  #     it 'returns status code 201' do
+  #       expect(response).to have_http_status(201)
+  #     end
+  #   end
+  #
+  #   context 'when the request is invalid' do
+  #     before { post '/users', params: { user_name: 'Foobar' } }
+  #
+  #     it 'returns status code 422' do
+  #       expect(response).to have_http_status(422)
+  #     end
+  #
+  #     it 'returns a validation failure message' do
+  #       expect(response.body)
+  #         .to match(/Validation failed: Email can't be blank/)
+  #     end
+  #   end
+  # end
 
   # Test suite for PUT /users/:id
   describe 'PUT /users/:id' do
