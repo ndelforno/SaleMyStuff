@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-Rspec.decribe 'Users API' , type: :request do
+RSpec.describe 'Users API' , type: :request do
   # initialize test data
   let!(:users) { create_list(:user, 10) }
   let(:user_id) { users.first.id }
 
   # Test suite for GET /users
-  describe ' Get /users' do
+  describe 'GET /users' do
     #make HTTP get request before each example
     before { get '/users'}
 

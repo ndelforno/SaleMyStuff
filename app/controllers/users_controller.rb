@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :update, :destroy]
+
+  # GET /users
+  def index
+    @users = User.all
+    json_response(@users)
+  end
+
   def new
     @user = User.new
   end
@@ -15,6 +23,34 @@ class UsersController < ApplicationController
     else
       redirect_to request.referer, notice: "signup failed !"
     end
+  end
+
+  # GET /users/:id
+  def show
+    json_response(@user)
+  end
+
+  # PUT /users/:id
+  def update
+    @user.update(user_params)
+    head :no_content
+  end
+
+  # DELETE /users/:id
+  def destroy
+    @user.destroy
+    head :no_content
+  end
+
+  private
+
+  def user_params
+    # whitelist params
+    params.permit(:user_name, :email, :password, :password_confirmation)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end
