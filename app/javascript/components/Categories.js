@@ -35,7 +35,7 @@ class Categories extends React.Component {
             <nav>
               <h1><Link to={`/${category.name}`} key={category.id}> {category.name}</Link></h1>
             </nav>
-            <Route path={`/${category.name}`} render={(props) => <AdpostsContainer key={category.id}/>} key={category.id} />
+            <Route path={`/${category.name}`} render={(props) => <AdpostsContainer id={category.id}/>} />
            </div>
          </Router>
         )

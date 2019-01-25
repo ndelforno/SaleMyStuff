@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-     resources :adposts, only: [:index, :create, :destroy, :update]
-     resources :categories, only: [:index, :create, :destroy, :update]
+     resources :adposts
+     resources :categories
     end
   end
 end

@@ -15,7 +15,8 @@ class Api::V1::CategoriesController < ApplicationController
 
   # GET /categories/:id
   def show
-    json_response(@category)
+    @category = Category.find(params[:id])
+    render json: @category, include: [:adposts]
   end
 
   # PUT /categories/:id
