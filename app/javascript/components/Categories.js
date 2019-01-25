@@ -33,9 +33,9 @@ class Categories extends React.Component {
         <Router>
            <div className= "card category" id = {category.name} key={category.id} >
             <nav>
-              <h1><Link to={`/${category.name}`}> {category.name}</Link></h1>
+              <h1><Link to={`/${category.name}`} key={category.id}> {category.name}</Link></h1>
             </nav>
-            <Route path={`/${category.name}`} component={AdpostsContainer} key={category.id} />
+            <Route path={`/${category.name}`} render={(props) => <AdpostsContainer key={category.id}/>} key={category.id} />
            </div>
          </Router>
         )
