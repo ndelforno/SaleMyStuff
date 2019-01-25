@@ -1,30 +1,44 @@
 class Api::V1::CategoriesController < ApplicationController
+  before_action :set_category, only: [:show, :update, :destroy]
+
+  # GET /categories
   def index
-    render json: Category.all
+    @categories = Category.all
+    json_response(@categories)
   end
 
+  # POST /categories
   def create
-    category = Category.create(category_params)
-    render json: category
+    @category = Category.create!(category_params)
+    json_response(@category, :created)
   end
 
-  def destroy
-    Category.destroy(params[:id])
-  end
-
-  def update
-    category = Category.find(params[:id])
-    category.update_attributes(category_params)
-    render json: category
-  end
-
+  # GET /categories/:id
   def show
-    render json: Category.find(params[:id])
+    json_response(@category)
+  end
+
+  # PUT /categories/:id
+  def update
+    @category.update(category_params)
+    head :no_content
+  end
+
+  # DELETE /categories/:id
+  def destroy
+    @category.destroy
+    head :no_content
   end
 
   private
 
   def category_params
-    params.require(:category).permit(:id, :name, :description)
+    # whitelist params
+    params.permit(:title, :created_by)
   end
+
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
 end

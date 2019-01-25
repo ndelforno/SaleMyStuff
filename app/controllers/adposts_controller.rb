@@ -1,6 +1,6 @@
 class AdpostsController < ApplicationController
-  before_action :set_user
-  before_action :set_user_adpost, only: [:show, :update, :destroy]
+  # before_action :set_user
+  # before_action :set_user_adpost, only: [:show, :update, :destroy]
 
   # GET /adposts
   def index
@@ -15,7 +15,6 @@ class AdpostsController < ApplicationController
 
   def show
     @adpost = Adpost.find(params[:id])
-    json_response(@adpost)
   end
 
   def create

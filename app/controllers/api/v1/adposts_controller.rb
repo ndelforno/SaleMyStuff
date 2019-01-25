@@ -1,26 +1,43 @@
 class Api::V1::AdpostsController < ApplicationController
+  before_action :set_adpost, only: [:show, :update, :destroy]
+
+  # GET /adposts
   def index
-    render json: Adpost.all
+    @adposts = Adpost.all
+    json_response(@adposts)
   end
 
+  # POST /adposts
   def create
-    adpost = Adpost.create(adpost_params)
-    render json: adpost
+    @adpost = Adpost.create!(adpost_params)
+    json_response(@adpost, :created)
   end
 
-  def destroy
-    Adpost.destroy(params[:id])
+  # GET /adposts/:id
+  def show
+    json_response(@adpost)
   end
 
+  # PUT /adposts/:id
   def update
-    adpost = Adpost.find(params[:id])
-    adpost.update_attributes(adpost_params)
-    render json: adpost
+    @adpost.update(adpost_params)
+    head :no_content
+  end
+
+  # DELETE /adposts/:id
+  def destroy
+    @adpost.destroy
+    head :no_content
   end
 
   private
 
   def adpost_params
-    params.require(:adpost).permit(:id, :name, :description)
+    # whitelist params
+    params.permit(:title, :created_by)
+  end
+
+  def set_adpost
+    @category = Adpost.find(params[:id])
   end
 end
