@@ -7,6 +7,7 @@ import {
   Link
 } from 'react-router-dom';
 import axios from 'axios'
+import AdpostsContainer from '../components/AdpostsContainer'
 
 class Categories extends React.Component {
 
@@ -34,8 +35,7 @@ class Categories extends React.Component {
             <nav>
               <h1><Link to={`/${category.name}`}> {category.name}</Link></h1>
             </nav>
-              <Route path= "/Computers" component= {Computers}/>
-              <Route path= "/Appliances" component= {Appliances}/>
+            <Route path={`/${category.name}`} component={AdpostsContainer} key={category.id} />
            </div>
          </Router>
         )
