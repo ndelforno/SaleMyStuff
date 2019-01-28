@@ -22,7 +22,7 @@ class AdpostsContainer extends React.Component {
   render () {
     let adpostsList = this.state.adposts.map(adpost =>
       <div className="card-body" >
-        <img className="card-img-top" src={adpost.image} alt="Card image cap"/>
+        <img className="card-img-top" src={adpost.image_url} alt="Card image cap"/>
         <div className="card-body">
           <h5 className="card-title"> {adpost.title} <span>{adpost.price}$</span> </h5>
           <p className="card-text">{adpost.description}</p>

@@ -1,6 +1,4 @@
 import React from 'react'
-import Computers from '../components/Computers'
-import Appliances from '../components/Appliances'
 import {
   BrowserRouter as Router,
   Route,
