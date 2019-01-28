@@ -9,8 +9,8 @@ class Api::V1::AdpostsController < ApplicationController
 
   # POST /adposts
   def create
-    @adpost = Adpost.create!(adpost_params)
-    json_response(@adpost, :created)
+    @adpost = Adpost.create(adpost_params)
+    render json: @adpost
   end
 
   # GET /adposts/:id
@@ -34,7 +34,7 @@ class Api::V1::AdpostsController < ApplicationController
 
   def adpost_params
     # whitelist params
-    params.permit(:title, :created_by)
+    params.require(:adpost).permit(:title, :description, :price, :user_id, :category_id, :adress, :image)
   end
 
   def set_adpost
