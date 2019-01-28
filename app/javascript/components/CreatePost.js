@@ -3,6 +3,22 @@ import axios from 'axios'
 
 class CreatePost extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      categories: []
+    };
+  }
+
+  componentDidMount(){
+    axios.get('/api/v1/categories.json')
+    .then(response => {
+      console.log(response)
+      this.setState({categories: response.data})
+    })
+    .catch(error => console.log(error))
+  }
+
   addNewPost = () => {
     axios.post(
       'http://localhost:3000/api/v1/adposts',
@@ -25,6 +41,16 @@ class CreatePost extends React.Component {
   }
 
   render(){
+
+    var categories = this.state.categories.map((category) => {
+      return(
+        <div>
+          {category.name}
+          <input type="radio" ref="category" key={category.id}/>
+        </div>
+      )
+    })
+
     return (
       <div>
         <h2>Create your Posting</h2>
@@ -32,9 +58,10 @@ class CreatePost extends React.Component {
           <label for="InputTitle">Title</label>
           <input ref="title" placeholder="Enter the title" className="form-control"/>
         </div>
-        <fieldset><legend>Category</legend>
-        <input type="radio" ref="category"/>
-        </fieldset>
+        <div className="form-group">
+          <label for="InputCategory">Category</label>
+          {categories}
+        </div>
         <div className="form-group">
           <label for="InputDescription">Description</label>
           <input ref="description" placeholder="Enter the description" className="form-control"/>

@@ -1,5 +1,5 @@
 class Api::V1::AdpostsController < ApplicationController
-  before_action :set_adpost, only: [:show, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /adposts
   def index
@@ -34,10 +34,8 @@ class Api::V1::AdpostsController < ApplicationController
 
   def adpost_params
     # whitelist params
-    params.require(:adpost).permit(:title, :description, :price, :user_id, :category_id, :adress, :image)
+    params.require(:adpost).permit(:title, :description, :price, :user_id, :category_id, :address, :image)
   end
 
-  def set_adpost
-    @category = Adpost.find(params[:id])
-  end
+
 end
