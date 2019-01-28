@@ -37,7 +37,6 @@ class Categories extends React.Component {
              </div>
              <Route path={`/${category.name}`} render={(props) => <AdpostsContainer id={category.id}/>} />
            </div>
-
          </Router>
         )
     })
