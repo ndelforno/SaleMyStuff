@@ -44,9 +44,9 @@ class CreatePost extends React.Component {
 
     var categories = this.state.categories.map((category) => {
       return(
-        <div>
+        <div key={category.id}>
           {category.name}
-          <input type="radio" ref="category" key={category.id}/>
+          <input type="radio" name="categoryButton" ref="category" key={category.id}/>
         </div>
       )
     })
