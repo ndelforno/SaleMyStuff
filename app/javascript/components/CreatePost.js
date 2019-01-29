@@ -26,16 +26,10 @@ class CreatePost extends React.Component {
     .catch(error => console.log(error))
   }
 
-  handleChange = event => {
-    this.setState({
-      title: event.target.value,
-      description: event.target.value,
-      price: event.target.value,
-      user_id: event.target.value,
-      category_id: event.target.value,
-      address: event.target.value,
-      image: event.target.value,
-      });
+  handleChange(e) {
+    let change = {}
+    change[e.target.name] = e.target.value
+    this.setState(change)
   }
 
   handleClick = event => {
@@ -64,7 +58,7 @@ class CreatePost extends React.Component {
 
     var categories = this.state.categories.map((category) => {
       return(
-          <option type="radio" name="categoryButton" value={category.id} ref="category" key={category.id}>{category.name}</option>
+          <option type="radio" value={category.id} name="category" key={category.id} value={this.state.category}>{category.name}</option>
       )
     })
 
@@ -74,31 +68,31 @@ class CreatePost extends React.Component {
         <form>
           <div className="form-group">
             <label for="InputTitle">Title</label>
-            <input ref="title" onChange={this.handleChange} placeholder="Enter the title" className="form-control"/>
+            <input name="title" onChange={this.handleChange.bind(this)} value={this.state.title} placeholder="Enter the title" className="form-control"/>
           </div>
           <div className="form-group">
             <label>
-              Choose your category: 
-              <select value={this.state.value} onChange={this.handleChange}>
+              Choose your category:
+              <select value={this.state.value} onChange={this.handleChange.bind(this)} >
                 {categories}
               </select>
             </label>
           </div>
           <div className="form-group">
             <label for="InputDescription">Description</label>
-            <input ref="description" onChange={this.handleChange} placeholder="Enter the description" className="form-control"/>
+            <input name="description" onChange={this.handleChange.bind(this)} value={this.state.description} placeholder="Enter the description" className="form-control"/>
           </div>
           <div className="form-group">
             <label for="InputPrice">Price</label>
-            <input type="number" ref="Price" onChange={this.handleChange} placeholder="Enter the Price" className="form-control"/>
+            <input type="number" name="price" onChange={this.handleChange.bind(this)} value={this.state.price} placeholder="Enter the Price" className="form-control"/>
           </div>
           <div className="form-group">
             <label for="InputImage">Image</label>
-            <input type="file" ref="Image" onChange={this.handleChange}/>
+            <input type="file" name="image" onChange={this.handleChange.bind(this)} value={this.state.image}/>
           </div>
           <div className="form-group">
-            <label for="InputAdress">Adress</label>
-            <input type="text" ref="Adress" onChange={this.handleChange} placeholder="Enter the Adress" className="form-control"/>
+            <label for="InputAdress">Address</label>
+            <input type="text" name="address" onChange={this.handleChange.bind(this)} value={this.state.address} placeholder="Enter the Adress" className="form-control"/>
           </div>
           <button className="btn btn-primary" onClick={this.handleClick}>
             Create Post
