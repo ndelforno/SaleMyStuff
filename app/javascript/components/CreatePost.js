@@ -58,7 +58,7 @@ class CreatePost extends React.Component {
 
     var categories = this.state.categories.map((category) => {
       return(
-          <option type="radio" value={category.id} name="category" key={category.id} value={this.state.category}>{category.name}</option>
+          <option type="radio" value={category.id}  name="category" key={category.id} >{category.name}</option>
       )
     })
 
@@ -73,7 +73,7 @@ class CreatePost extends React.Component {
           <div className="form-group">
             <label>
               Choose your category:
-              <select value={this.state.value} onChange={this.handleChange.bind(this)} >
+              <select value={this.state.category_id} onChange={this.handleChange.bind(this)} name="category_id"  >
                 {categories}
               </select>
             </label>
