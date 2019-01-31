@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-    json_response(@users)
+    render json: @users
   end
 
   # POST /users
