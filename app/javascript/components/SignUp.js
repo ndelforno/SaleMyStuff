@@ -13,6 +13,12 @@ class SignUp extends React.Component {
     };
   }
 
+  handleChange(e) {
+    let change = {}
+    change[e.target.name] = e.target.value
+    this.setState(change)
+  }
+
   handleClick = event => {
     event.preventDefault();
     axios.post(
@@ -40,6 +46,21 @@ class SignUp extends React.Component {
           <label for="InputUsername">Username</label>
           <input name="user_name" onChange={this.handleChange.bind(this)} value={this.state.user_name} placeholder="Enter your name" className="form-control"/>
         </div>
+        <div className="form-group">
+          <label for="InputEmail">Email</label>
+          <input name="email" onChange={this.handleChange.bind(this)} value={this.state.email} placeholder="Enter your email address" className="form-control"/>
+        </div>
+        <div className="form-group">
+          <label for="InputPassword">Password</label>
+          <input type="password" name="password" onChange={this.handleChange.bind(this)} value={this.state.password} placeholder="password" className="form-control"/>
+        </div>
+        <div className="form-group">
+          <label for="InputPasswordconfirmation">Confirm your Password</label>
+          <input type="password" name="password_confirmation" onChange={this.handleChange.bind(this)} value={this.state.password_confirmation} placeholder="confirm your password" className="form-control"/>
+        </div>
+        <button className="btn btn-primary" onClick={this.handleClick}>
+          Sign Up
+        </button>
       </div>
     )
   }
