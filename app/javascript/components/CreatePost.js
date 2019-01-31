@@ -21,7 +21,7 @@ class CreatePost extends React.Component {
     axios.get('/api/v1/categories.json')
     .then(response => {
       console.log(response)
-      this.setState({categories: response.data})
+      this.setState({categories: response.data, category_id: response.data[0].id})
     })
     .catch(error => console.log(error))
   }
