@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = Adpost.create(user_params)
+    @user = User.create(user_params)
     render json: @user
   end
 
@@ -30,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
 
   def user_params
     # whitelist params
-    params.require(:user).permit(:title, :description, :price, :user_id, :category_id, :address, :image)
+    params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
   end
 
 

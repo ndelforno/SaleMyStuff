@@ -7,6 +7,7 @@ import {
 import Categories from '../components/Categories'
 import About from '../components/About'
 import CreatePost from '../components/CreatePost'
+import SignUp from '../components/SignUp'
 import axios from 'axios'
 
 
@@ -20,6 +21,9 @@ class App extends React.Component {
             <Link to="/">Home</Link>
           </li>
           <li>
+            <Link to="/">Sign-up</Link>
+          </li>
+          <li>
             <Link to="/CreatePost">Create a Post</Link>
           </li>
           <li>
@@ -27,6 +31,7 @@ class App extends React.Component {
           </li>
         </ul>
         <Route exact path="/" component={Categories} />
+        <Route path="/CreatePost" component={SignUp} />
         <Route path="/CreatePost" component={CreatePost} />
         <Route path="/about" component={About} />
       </div>
