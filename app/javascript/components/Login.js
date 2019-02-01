@@ -21,7 +21,7 @@ class Login extends React.Component {
     event.preventDefault();
     axios.post(
       'http://localhost:3000/api/v1/sessions',
-      { user:
+      { session:
         {
           email: this.state.email,
           password: this.state.password,

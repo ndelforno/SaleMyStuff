@@ -10,6 +10,7 @@ class Api::V1::AdpostsController < ApplicationController
   # POST /adposts
   def create
     @adpost = Adpost.create(adpost_params)
+    @adpost.image.attach(adpost_params[:image])
     render json: @adpost
   end
 
