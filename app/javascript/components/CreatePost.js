@@ -26,26 +26,21 @@ class CreatePost extends React.Component {
     .catch(error => console.log(error))
   }
 
-  fileLoaded(event) {
-    this.setState({ image: event.target.result})
-  }
 
   handleFileChange(event) {
-    let getBase64 = (callback) => {
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      console.log(fileReader.result);
-    };
-    fileReader.readAsDataURL(fileToLoad);
-    fileReader.onerror = (error) => {
-      console.log('Error :', error);
-    };
-  }
+    let reader = new FileReader();
+      reader.onload = function(event) {
+        console.log(reader.result);
+        this.setState({image: reader.result})
+      }.bind(this)
+      console.log(event.target.files[0]);
+      reader.readAsDataURL(event.target.files[0]);
   }
 
-  handleChange(e) {
+
+  handleChange(event) {
     let change = {}
-    change[e.target.name] = e.target.value
+    change[event.target.name] = event.target.value
     this.setState(change)
   }
 
@@ -105,7 +100,7 @@ class CreatePost extends React.Component {
           </div>
           <div className="form-group">
             <label for="InputImage">Image</label>
-            <input type="file" name="image" onChange={this.handleFileChange} value={this.state.image}/>
+            <input type="file" name="image" onChange={this.handleFileChange.bind(this)}/>
           </div>
           <div className="form-group">
             <label for="InputAdress">Address</label>
