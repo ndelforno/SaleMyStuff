@@ -28,6 +28,7 @@ class CreatePost extends React.Component {
 
 
   handleFileChange(event) {
+    var file = event.target.files[0];
     let reader = new FileReader();
       reader.onload = function(event) {
         console.log(reader.result);
