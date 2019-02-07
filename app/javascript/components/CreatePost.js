@@ -10,7 +10,7 @@ class CreatePost extends React.Component {
       title: '',
       description: '',
       price: '',
-      user_id: '',
+      user_id: 1,
       category_id: '',
       address: '',
       image: '',
@@ -28,14 +28,7 @@ class CreatePost extends React.Component {
 
 
   handleFileChange(event) {
-    var file = event.target.files[0];
-    let reader = new FileReader();
-      reader.onload = function(event) {
-        console.log(reader.result);
-        this.setState({image: reader.result})
-      }.bind(this)
-      console.log(event.target.files[0]);
-      reader.readAsDataURL(event.target.files[0]);
+    this.setState({image: event.target.files[0]})
   }
 
 
@@ -47,21 +40,20 @@ class CreatePost extends React.Component {
 
   handleClick = event => {
     event.preventDefault();
-    axios.post(
-      'http://localhost:3000/api/v1/adposts',
-      { adpost:
-        {
-          title: this.state.title,
-          description: this.state.description,
-          price: this.state.price,
-          user_id: this.state.user_id,
-          category_id: this.state.category_id,
-          address: this.state.address,
-          image: this.state.image,
-        }
-      }
-    )
-    .then(response => {
+    var bodyFormData = new FormData();
+    bodyFormData.set("title", this.state.title);
+    bodyFormData.set("description", this.state.description);
+    bodyFormData.set("price", this.state.price);
+    bodyFormData.set("user_id", this.state.user_id);
+    bodyFormData.set("category_id", this.state.category_id);
+    bodyFormData.set("address", this.state.address);
+    bodyFormData.append('image', this.state.image)
+    axios({
+    method: 'post',
+    url: 'http://localhost:3000/api/v1/adposts',
+    data: bodyFormData,
+    config: { headers: {'Content-Type': 'multipart/form-data' }}
+    }).then(response => {
       console.log(response)
     })
     .catch(error => console.log(error))

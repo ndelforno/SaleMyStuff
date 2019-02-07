@@ -1,5 +1,6 @@
 class Api::V1::AdpostsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  protect_from_forgery unless: -> { request.format.json? }
 
   # GET /adposts
   def index
@@ -10,7 +11,6 @@ class Api::V1::AdpostsController < ApplicationController
   # POST /adposts
   def create
     @adpost = Adpost.create(adpost_params)
-    @adpost.image.attach(adpost_params[:image])
     render json: @adpost
   end
 
@@ -35,7 +35,7 @@ class Api::V1::AdpostsController < ApplicationController
 
   def adpost_params
     # whitelist params
-    params.require(:adpost).permit(:title, :description, :price, :user_id, :category_id, :address, :image)
+    params.permit(:title, :description, :price, :user_id, :category_id, :address, :image)
   end
 
 
