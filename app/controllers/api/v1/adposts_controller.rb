@@ -17,7 +17,7 @@ class Api::V1::AdpostsController < ApplicationController
   # GET /adposts/:id
   def show
     @adpost = Adpost.find(params[:id])
-    render json: @adpost
+    render json: @adpost.to_json(:include => [:image, :user], methods: :image_url)
   end
 
   # PUT /adposts/:id
