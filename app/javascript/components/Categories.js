@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import axios from 'axios'
 import AdpostsContainer from '../components/AdpostsContainer'
+import Adpost from '../components/Adpost'
 
 class Categories extends React.Component {
 

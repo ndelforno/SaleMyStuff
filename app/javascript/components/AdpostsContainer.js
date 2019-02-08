@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+import Adpost from '../components/Adpost'
 
 
 class AdpostsContainer extends React.Component {
@@ -27,16 +33,23 @@ class AdpostsContainer extends React.Component {
           <div className="card-body">
             <h5 className="card-title"> {adpost.title} <span>{adpost.price}$</span> </h5>
             <p className="card-text">{adpost.description}</p>
-            <a href={'/adposts/' + adpost.id} className="btn btn-primary">See posting</a>
+            <button className="btn btn-primary" >
+              <Link to={`/${adpost.id}`} key={adpost.id}>
+              See Posting
+              </Link>
+            </button>
           </div>
         </div>
+        <Route path={`/${adpost.id}`} render={(props) => <Adpost id={adpost.id}/>} />
       </div>
     )
 
     return (
-      <div className="row">
-        {adpostsList}
-      </div>
+      <Router>
+        <div className="row">
+          {adpostsList}
+        </div>
+      </Router>
       )
   }
 
