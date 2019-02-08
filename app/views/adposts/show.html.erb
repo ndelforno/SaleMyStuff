@@ -7,7 +7,7 @@
   </div>
   <div class="row">
     <div class="col-lg-6">
-      <% if @adpost.image == true %>
+      <% if @adpost.image.attachment %>
         <%= image_tag @adpost.image  %>
       <% end %>
       <p><%= @adpost.description  %></p>

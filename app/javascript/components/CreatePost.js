@@ -50,7 +50,7 @@ class CreatePost extends React.Component {
     bodyFormData.append('image', this.state.image)
     axios({
     method: 'post',
-    url: 'http://localhost:3000/api/v1/adposts',
+    url: '/api/v1/adposts',
     data: bodyFormData,
     config: { headers: {'Content-Type': 'multipart/form-data' }}
     }).then(response => {

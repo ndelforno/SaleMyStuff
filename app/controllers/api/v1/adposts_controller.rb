@@ -16,7 +16,8 @@ class Api::V1::AdpostsController < ApplicationController
 
   # GET /adposts/:id
   def show
-    json_response(@adpost)
+    @adpost = Adpost.find(params[:id])
+    render json: @adpost
   end
 
   # PUT /adposts/:id
