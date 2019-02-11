@@ -3,6 +3,19 @@ import axios from 'axios'
 
 class Login extends React.Component {
 
+  currentUser () {
+    return fetch(`${baseUrl}/api/v1/current_user`, {
+      credentials: 'include'
+    }).then(res => res.json())
+  }
+
+  logout () {
+    return fetch(`${baseUrl}/api/v1/auth`, {
+      method: 'DELETE',
+      credentials: 'include'
+    }).then(res => res.json())
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -19,19 +32,18 @@ class Login extends React.Component {
 
   handleClick = event => {
     event.preventDefault();
-    axios.post(
-      'http://localhost:3000/api/v1/sessions',
-      { session:
-        {
-          email: this.state.email,
-          password: this.state.password,
-        }
-      }
-    )
-    .then(response => {
-      console.log(response)
-    })
-    .catch(error => console.log(error))
+    var bodyFormData = new FormData();
+    bodyFormData.set("email", this.state.email);
+    bodyFormData.set("password", this.state.password);
+    axios({
+      method: 'post',
+      url:'api/v1/authentication',
+      data: bodyFormData,
+      config: { headers: {'Content-Type': 'multipart/form-data' }}
+      }).then(response => {
+        console.log(response)
+      })
+      .catch(error => console.log(error))
   }
 
   render(){

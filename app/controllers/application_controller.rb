@@ -1,13 +1,19 @@
 class ApplicationController < ActionController::Base
 
-  before_action :authenticate_request
+  # before_action :authenticate_user
+
   attr_reader :current_user
+  helper_method :current_user
+
 
   include Response
   include ExceptionHandler
 
   protect_from_forgery with: :null_session
 
+  def current_user
+    User.find_by(id: session[:user_id])
+  end
 
   def require_login
     unless current_user
@@ -17,13 +23,10 @@ class ApplicationController < ActionController::Base
   end
 
 
-  helper_method :current_user
 
-  private
-
-  def authenticate_request
-    @current_user = AuthorizeApiRequest.call(request.headers).result
-    render json: { error: 'Not Authorized' }, status: 401 unless @current_user
+  def authenticate_user
+    jwt = cookies.signed[:jwt]
+    decode_jwt(jwt)
   end
 
 

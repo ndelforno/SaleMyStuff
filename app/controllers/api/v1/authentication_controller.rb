@@ -1,13 +1,18 @@
-class Api::V1::SessionsController < ApplicationController
-  skip_before_action :authenticate_request
+class Api::V1::AuthenticationController < ApplicationController
+  def create
+    user = User.find_by(params[:email])
+    if user && user.authenticate(params[:password])
+      created_jwt = issue_token({id: user.id})
+      cookies.signed[:jwt] = {value:  created_jwt, httponly: true, expires: 1.hour.from_now}
+      render json: {username: user.username}
+    else
+      render json: {
+        error: 'Username or password incorrect'
+      }, status: 404
+    end
+  end
 
- def authenticate
-   command = AuthenticateUser.call(params[:email], params[:password])
-
-   if command.success?
-     render json: { auth_token: command.result }
-   else
-     render json: { error: command.errors }, status: :unauthorized
-   end
- end
+  def destroy
+    cookies.delete(:jwt)
+  end 
 end

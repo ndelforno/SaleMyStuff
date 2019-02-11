@@ -49,14 +49,14 @@ class CreatePost extends React.Component {
     bodyFormData.set("address", this.state.address);
     bodyFormData.append('image', this.state.image)
     axios({
-    method: 'post',
-    url: '/api/v1/adposts',
-    data: bodyFormData,
-    config: { headers: {'Content-Type': 'multipart/form-data' }}
-    }).then(response => {
-      console.log(response)
-    })
-    .catch(error => console.log(error))
+      method: 'post',
+      url: '/api/v1/adposts',
+      data: bodyFormData,
+      config: { headers: {'Content-Type': 'multipart/form-data' }}
+      }).then(response => {
+        console.log(response)
+      })
+      .catch(error => console.log(error))
   }
 
   render(){
