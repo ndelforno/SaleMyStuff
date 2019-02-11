@@ -1,18 +1,17 @@
 class Api::V1::AuthenticationController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
-    user = User.find_by(params[:email])
-    if user && user.authenticate(params[:password])
-      created_jwt = issue_token({id: user.id})
-      cookies.signed[:jwt] = {value:  created_jwt, httponly: true, expires: 1.hour.from_now}
-      render json: {username: user.username}
-    else
-      render json: {
-        error: 'Username or password incorrect'
-      }, status: 404
-    end
+    user = User.find_by(email: params[:email])
+     if user && user.authenticate(params[:password])
+       auth_token = JsonWebToken.encode({user_id: user.id})
+       render son: {auth_token: auth_token}, status: :ok
+     else
+       render json: {error: 'Login Unsuccessfull'}, status: :unauthorized
+     end
   end
 
   def destroy
     cookies.delete(:jwt)
-  end 
+  end
 end

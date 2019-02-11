@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
 
-  # before_action :authenticate_user
-
   attr_reader :current_user
   helper_method :current_user
 
@@ -11,22 +9,31 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session
 
-  def current_user
-    User.find_by(id: session[:user_id])
-  end
-
-  def require_login
-    unless current_user
-      flash[:alert] = "Please log in"
-      redirect_to new_session_path
+  protected
+  def authenticate_request!
+    if !payload || !JsonWebToken.valid_payload(payload.first)
+      return invalid_authentication
     end
+
+    load_current_user!
+    invalid_authentication unless @current_user
   end
 
+  def invalid_authentication
+    render json: {error: 'Invalid Request'}, status: :unauthorized
+  end
 
+  private
+  def payload
+    auth_header = request.headers['Authorization']
+    token = auth_header.split(' ').last
+    JsonWebToken.decode(token)
+  rescue
+    nil
+  end
 
-  def authenticate_user
-    jwt = cookies.signed[:jwt]
-    decode_jwt(jwt)
+  def load_current_user!
+    @current_user = User.find_by(id: payload[0]['user_id'])
   end
 
 
