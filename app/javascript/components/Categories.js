@@ -31,7 +31,6 @@ class Categories extends React.Component {
 
     var categories = this.state.categories.map((category) => {
       return(
-
           <div className= "categories" >
              <div className= "card category" id = {category.name} key={category.id} >
               <nav>
@@ -46,11 +45,13 @@ class Categories extends React.Component {
         )
     })
     return (
-      <div>
-          <div className="categories-container" ref="catontainer">
-              {categories}
-          </div>
-      </div>
+      <Router>
+        <div>
+            <div className="categories-container" ref="catcontainer">
+                {categories}
+            </div>
+        </div>
+      </Router>
     )
   }
 }
