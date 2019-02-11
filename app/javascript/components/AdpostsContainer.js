@@ -34,13 +34,13 @@ class AdpostsContainer extends React.Component {
             <h5 className="card-title"> {adpost.title} <span>{adpost.price}$</span> </h5>
             <p className="card-text">{adpost.description}</p>
             <button className="btn btn-primary" >
-              <Link to={`/${adpost.id}`} key={adpost.id}>
+              <Link to={`/adposts/${adpost.id}`} key={adpost.id}>
               See Posting
               </Link>
             </button>
           </div>
         </div>
-        <Route path={`/${adpost.id}`} render={(props) => <Adpost id={adpost.id}/>} />
+        <Route path={`/adposts/${adpost.id}`} render={(props) => <Adpost id={adpost.id}/>} />
       </div>
     )
 

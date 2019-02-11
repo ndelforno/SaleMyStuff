@@ -34,6 +34,7 @@ class Adpost extends React.Component {
             <img src={this.state.adpost.image_url} />
             <p> {this.state.adpost.description} </p>
             <p> {this.state.user.email}</p>
+
             <p id="address">{this.state.adpost.address} </p>
           </div>
           <div className="col-lg-3" id="mapid" data-role="main" className="ui-content"></div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
+  Switch,
   Route,
   Link
 } from 'react-router-dom';
@@ -25,25 +26,28 @@ class Categories extends React.Component {
     .catch(error => console.log(error))
   }
 
+
   render () {
 
     var categories = this.state.categories.map((category) => {
       return(
-        <Router>
-          <div className= "body">
+
+          <div className= "categories" >
              <div className= "card category" id = {category.name} key={category.id} >
               <nav>
-                <h1><Link to={`/${category.name}`} key={category.id}> {category.name}</Link></h1>
+                <h1><Link to={`/${category.name}`} key={category.id} > {category.name} </Link></h1>
               </nav>
              </div>
-             <Route path={`/${category.name}`} render={(props) => <AdpostsContainer id={category.id}/>} />
+             <Switch>
+              <Route exact path={`/${category.name}`} render={(props) => {return <AdpostsContainer id={category.id}/>}} />
+             </Switch>
            </div>
-         </Router>
+
         )
     })
     return (
       <div>
-          <div className="categories-container">
+          <div className="categories-container" ref="catontainer">
               {categories}
           </div>
       </div>
