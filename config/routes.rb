@@ -8,12 +8,13 @@ Rails.application.routes.draw do
   resources :categories
   resources :sessions, only: [:new, :create, :destroy]
 
+  post 'authenticate' to: 'authentication#authenticate'
+
   namespace :api do
     namespace :v1 do
      resources :adposts
      resources :categories
      resources :users
-     resources :sessions, only: [:new, :create, :destroy]
     end
   end
 end
